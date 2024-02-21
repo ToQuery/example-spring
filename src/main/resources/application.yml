@@ -1,0 +1,87 @@
+info:
+  app:
+    name: ${spring.application.name}
+    version: 1.0.0
+
+server:
+  shutdown: graceful # 优雅停机
+
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      exposure:
+        include:
+          - *
+        exclude:
+          - none
+
+  endpoint:
+    health:
+      enabled: true
+      probes:
+        enabled: true
+      show-details: always
+    info:
+      enabled: true
+
+  health:
+    livenessState: # 开启/actuator/health/liveness
+      enabled: true
+    readinessState: # 开启/actuator/health/readiness
+      enabled: true
+
+  metrics:
+    enable:
+      jvm: true
+    use-global-registry: false
+    tags:
+      region: cn-bj-1
+      app: example-spring
+
+  observations:
+    key-values:
+      application: ${spring.application.name}
+
+spring:
+  application:
+    name: example-spring
+
+  # 输出带有颜色的控制台日志
+  output:
+    ansi:
+      enabled: ALWAYS
+
+  threads:
+    virtual:
+      enabled: true
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+      location: /Users/toquery/Projects/Example/example-spring/target/tmp
+
+  mvc:
+
+    # 暂时未发现该配置作用 @DateTimeFormat ？
+    format:
+      date: yyyy-MM-dd
+      time: HH:mm:ss
+      date-time: ${spring.mvc.format.date} ${spring.mvc.format.time}
+
+    # Whether RFC 7807 Problem Details support should be enabled.
+    problemdetails:
+      enabled: true
+
+  jackson:
+    time-zone: GMT+8 # 该设置与数据库 spring.jpa.properties.hibernate.jdbc.time_zone 保持一致
+    date-format: yyyy-MM-dd HH:mm:ss # 优先使用@JsonFormat设置的格式，否则使用该格式
+    locale: zh_CN
+    default-property-inclusion: non_null
+    serialization:
+      write-dates-as-timestamps: false # 将 date 数据转换为 timestamps(Long)，否则转换为 date-format 格式
+      write_null_map_values: false # 不返还 null
+#    mapper:
+#      ACCEPT_CASE_INSENSITIVE_ENUMS: true
