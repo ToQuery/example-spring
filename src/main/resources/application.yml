@@ -43,7 +43,7 @@ management:
     use-global-registry: false
     tags:
       region: cn-bj-1
-      app: example-spring
+      application: ${spring.application.name}
 
   observations:
     key-values:
@@ -90,3 +90,9 @@ spring:
       write_null_map_values: false # 不返还 null
 #    mapper:
 #      ACCEPT_CASE_INSENSITIVE_ENUMS: true
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://postgres.example-spring.orb.local:5432/example_spring
+    username: postgres
+    password: postgres
