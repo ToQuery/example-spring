@@ -30,12 +30,23 @@ datasources:
     version: 1
     editable: false
 
+  # 配置 Elasticsearch 的数据源
+  - name: Elasticsearch
+    type: elasticsearch
+    access: proxy
+    orgId: 1
+    url: http://elasticsearch:9200  #在相同的docker compose下，可以直接用 elasticsearch 服务名直接访问
+    basicAuth: false
+    isDefault: false
+    version: 1
+    editable: false
+
   # 配置 Zipkin 的数据源
   - name: Zipkin
     type: zipkin
     access: proxy
     orgId: 1
-    url: http://zipkin:9411  #在相同的docker compose下，可以直接用 loki 服务名直接访问
+    url: http://zipkin:9411  # 在相同的docker compose下，可以直接用 zipkin 服务名直接访问
     basicAuth: false
     isDefault: false
     version: 1
@@ -47,7 +58,7 @@ datasources:
     type: tempo
     access: proxy
     orgId: 1
-    url: http://tempo:3200  #在相同的docker compose下，可以直接用 tempo 服务名直接访问
+    url: http://tempo:3200  # 在相同的docker compose下，可以直接用 tempo 服务名直接访问
     basicAuth: false
     isDefault: false
     version: 1

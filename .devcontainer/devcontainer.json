@@ -23,7 +23,9 @@
       "extensions": [
         "vscjava.vscode-java-pack",
         "pivotal.vscode-boot-dev-pack",
-        "vscjava.vscode-maven"
+        "vscjava.vscode-maven",
+        "ms-azuretools.vscode-docker",
+        "vscjava.vscode-spring-boot-dashboard"
       ]
     }
   },
