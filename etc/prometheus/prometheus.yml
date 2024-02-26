@@ -1,6 +1,8 @@
 global:
   scrape_interval: 15s # By default, scrape targets every 15 seconds.
 
+  evaluation_interval: 15s
+
   # Attach these labels to any time series or alerts when communicating with
   # external systems (federation, remote storage, Alertmanager).
   external_labels:
@@ -19,6 +21,7 @@ scrape_configs:
     static_configs:
       - targets: ['prometheus:9090']
 
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: node-exporter
 
     # Override the global default and scrape targets from this job every 5 seconds.
@@ -26,6 +29,7 @@ scrape_configs:
 
     static_configs:
       - targets: ['node-exporter:9100']
+
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: 'example-spring'
 
@@ -37,6 +41,12 @@ scrape_configs:
     static_configs:
       - targets: ['host.internal:8081']
 
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: 'postgres-exporter'
     static_configs:
       - targets: [ 'postgres-exporter:9187' ]
+
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'tempo'
+    static_configs:
+      - targets: [ 'tempo:3200' ]

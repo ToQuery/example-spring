@@ -35,9 +35,18 @@
         <format>
             <label>
                 <pattern>app=${appName},host=${HOSTNAME},traceID=%X{traceId:-NONE},level=%level</pattern>
+                <readMarkers>true</readMarkers>
             </label>
             <message>
-                <pattern>${FILE_LOG_PATTERN}</pattern>
+                <pattern>
+                    {
+                        "level":"%level",
+                        "class":"%logger{36}",
+                        "thread":"%thread",
+                        "message": "%message",
+                        "requestId": "%X{X-Request-ID}"
+                    }
+                </pattern>
             </message>
             <sortByTime>true</sortByTime>
         </format>

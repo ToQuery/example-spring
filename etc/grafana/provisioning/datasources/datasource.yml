@@ -8,7 +8,7 @@ deleteDatasources:  #如果之前存在name为Prometheus，orgId为1的数据源
 #    orgId: 1
 
 datasources:
-  #配置Prometheus的数据源
+  # 配置Prometheus的数据源
   - name: Prometheus
     type: prometheus
     access: proxy
@@ -20,12 +20,36 @@ datasources:
     editable: false
 
   # 配置 Loki 的数据源
-#  - name: Loki
-#    type: loki
-#    access: proxy
-#    orgId: 1
-#    url: http://loki:3100  #在相同的docker compose下，可以直接用 loki 服务名直接访问
-#    basicAuth: false
-#    isDefault: true
-#    version: 1
-#    editable: false
+  - name: Loki
+    type: loki
+    access: proxy
+    orgId: 1
+    url: http://loki:3100  #在相同的docker compose下，可以直接用 loki 服务名直接访问
+    basicAuth: false
+    isDefault: false
+    version: 1
+    editable: false
+
+  # 配置 Zipkin 的数据源
+  - name: Zipkin
+    type: zipkin
+    access: proxy
+    orgId: 1
+    url: http://zipkin:9411  #在相同的docker compose下，可以直接用 loki 服务名直接访问
+    basicAuth: false
+    isDefault: false
+    version: 1
+    editable: false
+
+
+  # 配置 Tempo 的数据源
+  - name: Tempo
+    type: tempo
+    access: proxy
+    orgId: 1
+    url: http://tempo:3200  #在相同的docker compose下，可以直接用 tempo 服务名直接访问
+    basicAuth: false
+    isDefault: false
+    version: 1
+    editable: false
+
